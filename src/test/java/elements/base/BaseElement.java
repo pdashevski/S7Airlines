@@ -18,12 +18,12 @@ public abstract class BaseElement {
         wait = new WebDriverWait(driver, 5);
     }
 
-    public void isElementPresent(WebElement webElement) {
+    /*public void isElementPresent(WebElement webElement) {
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated((By) webElement));
         } catch (NoSuchElementException exception) {
             System.out.println(webElement);
             Assert.fail("Element" + webElement + " cannot be clicked or not found");
         }
-    }
+    }*/
 }

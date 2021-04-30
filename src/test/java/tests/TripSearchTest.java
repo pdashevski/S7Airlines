@@ -6,12 +6,11 @@ import tests.base.RetryAnalyzer;
 
 public class TripSearchTest extends BaseTest {
 
-    @Test(retryAnalyzer = RetryAnalyzer.class, description = "OLOLO")
+    @Test(retryAnalyzer = RetryAnalyzer.class, description = "Тест для теста")
     public void openPage() throws InterruptedException {
         tripSearchPage.open();
         tripSearchPage.tripTypeRadioButtonSelect("В одну сторону");
         tripSearchPage.airportFrom("DME");
         tripSearchPage.airportTo("OVB");
-        System.out.println("");
     }
 }

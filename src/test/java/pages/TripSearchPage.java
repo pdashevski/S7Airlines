@@ -15,7 +15,7 @@ public class TripSearchPage extends BasePage {
     }
 
     public void open() {
-        driver.get("https://ibe3:ibe3T5678@qa-ibe.s7.ru/");
+        driver.get("");
     }
 
     public void tripTypeRadioButtonSelect(String tripType) {
