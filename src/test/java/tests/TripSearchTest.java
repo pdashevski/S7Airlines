@@ -3,7 +3,6 @@ package tests;
 import org.testng.annotations.Test;
 import tests.base.BaseTest;
 import tests.base.RetryAnalyzer;
-import utils.PropertyReader;
 
 public class TripSearchTest extends BaseTest {
 
@@ -13,6 +12,8 @@ public class TripSearchTest extends BaseTest {
         tripSearchPage.tripTypeRadioButtonSelect("В одну сторону");
         tripSearchPage.airportFrom("DME");
         tripSearchPage.airportTo("OVB");
-        System.out.println(System.getProperty(PropertyReader.getProperty("URL")));
+        tripSearchPage.calendarClickButton("Туда");
+        tripSearchPage.calendarSelectMonthAndDay("май", "15");
+        tripSearchPage.searchSubmit();
     }
 }

@@ -3,7 +3,6 @@ package elements.base;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -18,12 +17,27 @@ public abstract class BaseElement {
         wait = new WebDriverWait(driver, 5);
     }
 
-    /*public void isElementPresent(WebElement webElement) {
+    public void isRadioButtonPresent(By locator) {
         try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated((By) webElement));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         } catch (NoSuchElementException exception) {
-            System.out.println(webElement);
-            Assert.fail("Element" + webElement + " cannot be clicked or not found");
+            Assert.fail("Element" + locator + " cannot be found");
         }
-    }*/
+    }
+
+    public void isButtonPresent(By locator) {
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        } catch (NoSuchElementException exception) {
+            Assert.fail("Element" + locator + " cannot be found");
+        }
+    }
+
+    public void isMonthOrDayPresentInCalendar(By locator) {
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        } catch (NoSuchElementException exception) {
+            Assert.fail("Month in calendar" + locator + " cannot be found");
+        }
+    }
 }

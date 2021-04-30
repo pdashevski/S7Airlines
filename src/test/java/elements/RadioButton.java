@@ -15,6 +15,7 @@ public class RadioButton extends BaseElement {
     }
 
     public void select() {
+        isRadioButtonPresent(By.xpath(String.format(locator, label)));
         driver.findElement(By.xpath(String.format(locator, label))).click();
     }
 }

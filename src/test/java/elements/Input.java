@@ -9,7 +9,7 @@ import org.openqa.selenium.WebElement;
 public class Input extends BaseElement {
 
     String name;
-    String locator = "//div[contains(@class,'%s')]//div/input"; //search-item departure search-item-with-react + search-item return search-item-with-react
+    String locator = "//div[contains(@class,'%s')]//div/input"; //search-item departure + search-item return
 
     public Input(WebDriver driver, String name) {
         super(driver);
@@ -22,7 +22,10 @@ public class Input extends BaseElement {
 
     public void selectFromDropDownAirport(String text) {
         write(text);
-        driver.findElement(By.xpath(String.format(locator, name))).sendKeys(Keys.ARROW_DOWN);
-        driver.findElement(By.xpath(String.format(locator, name))).sendKeys(Keys.ENTER);
+        WebElement webElement = driver.findElement(By.xpath(String.format(locator, name)));
+        webElement.sendKeys(Keys.ARROW_DOWN);
+        webElement.sendKeys(Keys.ENTER);
+        /*driver.findElement(By.xpath(String.format(locator, name))).sendKeys(Keys.ARROW_DOWN);
+        driver.findElement(By.xpath(String.format(locator, name))).sendKeys(Keys.ENTER);*/
     }
 }
