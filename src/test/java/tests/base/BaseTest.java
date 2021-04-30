@@ -11,7 +11,7 @@ import pages.TripSearchPage;
 @Listeners(TestListener.class)
 public class BaseTest {
 
-    WebDriver driver;
+    protected WebDriver driver;
     protected TripSearchPage tripSearchPage;
 
     @BeforeMethod(description = "Browser opening")
