@@ -7,6 +7,7 @@ public abstract class BasePage {
 
     protected WebDriver driver;
     protected WebDriverWait wait;
+    protected final static String propertyPath = "src/test/resources/config.properties";
 
     public BasePage(WebDriver driver) {
         this.driver = driver;

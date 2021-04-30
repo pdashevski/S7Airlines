@@ -4,6 +4,7 @@ import elements.Input;
 import elements.RadioButton;
 import org.openqa.selenium.WebDriver;
 import pages.base.BasePage;
+import utils.PropertyReader;
 
 public class TripSearchPage extends BasePage {
 
@@ -15,7 +16,7 @@ public class TripSearchPage extends BasePage {
     }
 
     public void open() {
-        driver.get("");
+        driver.get(System.getenv().getOrDefault(propertyPath, PropertyReader.getProperty("URL")));
     }
 
     public void tripTypeRadioButtonSelect(String tripType) {
