@@ -4,13 +4,11 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
-import pages.AutoAndHotelsPage;
-import pages.BaggageAndSeatsPage;
-import pages.FlightSearchPage;
-import pages.TripSearchPage;
+import pages.*;
 
 import java.util.concurrent.TimeUnit;
 
@@ -22,19 +20,22 @@ public class BaseTest {
     protected FlightSearchPage flightSearchPage;
     protected BaggageAndSeatsPage baggageAndSeatsPage;
     protected AutoAndHotelsPage autoAndHotelsPage;
+    protected PaymentPage paymentPage;
 
     @BeforeMethod(description = "Browser starting")
-    public void browserStart() {
+    public void browserStart(ITestContext iTestContext) {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--start-maximized");
         //chromeOptions.addArguments("--headless");
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver(chromeOptions);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        iTestContext.setAttribute("driver", driver);
         tripSearchPage = new TripSearchPage(driver);
         flightSearchPage = new FlightSearchPage(driver);
         baggageAndSeatsPage = new BaggageAndSeatsPage(driver);
         autoAndHotelsPage = new AutoAndHotelsPage(driver);
+        paymentPage = new PaymentPage(driver);
     }
 
     @AfterMethod(alwaysRun = true, description = "Browser closing")
