@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
+import pages.AutoAndHotelsPage;
 import pages.BaggageAndSeatsPage;
 import pages.FlightSearchPage;
 import pages.TripSearchPage;
@@ -20,6 +21,7 @@ public class BaseTest {
     protected TripSearchPage tripSearchPage;
     protected FlightSearchPage flightSearchPage;
     protected BaggageAndSeatsPage baggageAndSeatsPage;
+    protected AutoAndHotelsPage autoAndHotelsPage;
 
     @BeforeMethod(description = "Browser starting")
     public void browserStart() {
@@ -32,6 +34,7 @@ public class BaseTest {
         tripSearchPage = new TripSearchPage(driver);
         flightSearchPage = new FlightSearchPage(driver);
         baggageAndSeatsPage = new BaggageAndSeatsPage(driver);
+        autoAndHotelsPage = new AutoAndHotelsPage(driver);
     }
 
     @AfterMethod(alwaysRun = true, description = "Browser closing")

@@ -17,7 +17,8 @@ public class TripSearchTest extends BaseTest {
         tripSearchPage.searchSubmit();
         flightSearchPage.selectFare();
         flightSearchPage.flightSubmit();
-        baggageAndSeatsPage.baggageAndSeatsSubmit();
+        baggageAndSeatsPage.autoAndHotelsSubmit();
+        autoAndHotelsPage.baggageAndSeatsSubmit();
         System.out.println();
     }
 

@@ -1,6 +1,5 @@
 package pages;
 
-import elements.Button;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import pages.base.BasePage;
@@ -13,7 +12,8 @@ public class BaggageAndSeatsPage extends BasePage {
         super(driver);
     }
 
-    public void baggageAndSeatsSubmit() {
+    public void autoAndHotelsSubmit() {
+        isElementPresent(By.xpath(submitButton));
         driver.findElement(By.xpath(submitButton)).click();
     }
 }
