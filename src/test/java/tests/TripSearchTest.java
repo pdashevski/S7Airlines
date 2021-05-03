@@ -16,7 +16,8 @@ public class TripSearchTest extends BaseTest {
         tripSearchPage.calendarSelectMonthAndDay("май", "15");
         tripSearchPage.searchSubmit();
         flightSearchPage.selectFare();
-        flightSearchPage.submit();
+        flightSearchPage.flightSubmit();
+        baggageAndSeatsPage.baggageAndSeatsSubmit();
         System.out.println();
     }
 

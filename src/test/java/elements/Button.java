@@ -24,7 +24,7 @@ public class Button extends BaseElement {
         driver.findElement(By.xpath(String.format(locator, buttonName))).click();
     }
 
-    public void clickSearchSubmitButton() {
+    public void clickSubmitButton() {
         isElementPresent(By.id(submitLocator));
         driver.findElement(By.id(submitLocator)).click();
     }

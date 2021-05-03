@@ -29,4 +29,5 @@ public abstract class BasePage {
             Assert.fail("Element" + locator + " cannot be found");
         }
     }
+
 }

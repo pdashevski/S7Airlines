@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
+import pages.BaggageAndSeatsPage;
 import pages.FlightSearchPage;
 import pages.TripSearchPage;
 
@@ -18,6 +19,7 @@ public class BaseTest {
     protected WebDriver driver;
     protected TripSearchPage tripSearchPage;
     protected FlightSearchPage flightSearchPage;
+    protected BaggageAndSeatsPage baggageAndSeatsPage;
 
     @BeforeMethod(description = "Browser starting")
     public void browserStart() {
@@ -29,7 +31,7 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         tripSearchPage = new TripSearchPage(driver);
         flightSearchPage = new FlightSearchPage(driver);
-
+        baggageAndSeatsPage = new BaggageAndSeatsPage(driver);
     }
 
     @AfterMethod(alwaysRun = true, description = "Browser closing")

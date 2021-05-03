@@ -43,6 +43,6 @@ public class TripSearchPage extends BasePage {
     }
 
     public void searchSubmit() {
-        new Button(driver).clickSearchSubmitButton();
+        new Button(driver).clickSubmitButton();
     }
 }
