@@ -15,5 +15,13 @@ public class TripSearchTest extends BaseTest {
         tripSearchPage.calendarClickButton("Туда");
         tripSearchPage.calendarSelectMonthAndDay("май", "15");
         tripSearchPage.searchSubmit();
+        flightSearchPage.selectFare();
+        flightSearchPage.submit();
+        System.out.println();
+    }
+
+    @Test
+    public void fh() {
+        tripSearchPage.open();
     }
 }

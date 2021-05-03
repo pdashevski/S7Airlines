@@ -20,12 +20,12 @@ public class Button extends BaseElement {
     }
 
     public void clickCalendarButton() {
-        isButtonPresent(By.xpath(String.format(locator, buttonName)));
+        isElementPresent(By.xpath(String.format(locator, buttonName)));
         driver.findElement(By.xpath(String.format(locator, buttonName))).click();
     }
 
     public void clickSearchSubmitButton() {
-        isButtonPresent(By.id(submitLocator));
+        isElementPresent(By.id(submitLocator));
         driver.findElement(By.id(submitLocator)).click();
     }
 }

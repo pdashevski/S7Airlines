@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
+import pages.FlightSearchPage;
 import pages.TripSearchPage;
 
 import java.util.concurrent.TimeUnit;
@@ -16,6 +17,7 @@ public class BaseTest {
 
     protected WebDriver driver;
     protected TripSearchPage tripSearchPage;
+    protected FlightSearchPage flightSearchPage;
 
     @BeforeMethod(description = "Browser starting")
     public void browserStart() {
@@ -26,6 +28,8 @@ public class BaseTest {
         driver = new ChromeDriver(chromeOptions);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         tripSearchPage = new TripSearchPage(driver);
+        flightSearchPage = new FlightSearchPage(driver);
+
     }
 
     @AfterMethod(alwaysRun = true, description = "Browser closing")

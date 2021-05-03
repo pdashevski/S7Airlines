@@ -17,15 +17,7 @@ public abstract class BaseElement {
         wait = new WebDriverWait(driver, 5);
     }
 
-    public void isRadioButtonPresent(By locator) {
-        try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-        } catch (NoSuchElementException exception) {
-            Assert.fail("Element" + locator + " cannot be found");
-        }
-    }
-
-    public void isButtonPresent(By locator) {
+    public void isElementPresent(By locator) {
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         } catch (NoSuchElementException exception) {
