@@ -32,5 +32,6 @@ public class TripSearchTest extends BaseTest {
         paymentPage.onHoldPayment();
         paymentPage.confirmCheckboxSelect();
         paymentPage.submitPassenger();
+        System.out.println();
     }
 }

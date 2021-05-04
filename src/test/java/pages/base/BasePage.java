@@ -30,4 +30,12 @@ public abstract class BasePage {
         }
     }
 
+    public void isElementlickable(By locator) {
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(locator));
+        } catch (NoSuchElementException exception) {
+            Assert.fail("Element" + locator + " cannot be found");
+        }
+    }
+
 }

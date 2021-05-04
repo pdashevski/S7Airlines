@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 
 public class Calendar extends BaseElement {
 
-    String calendaDayLocator = "//time[contains(text(),'%s')]"; //   "//li[@data-month-name='%s']//time[contains(text(),'%s')]"
+    String calendaDayLocator = "//time[contains(text(),'%s')]";
     String calendarMonthLocator = "//li[@data-month-name='%s']";
     String month;
     String day;

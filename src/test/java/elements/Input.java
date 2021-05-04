@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class Input extends BaseElement {
 
     String name;
-    String locator = "//div[contains(@class,'%s')]//div/input"; //search-item departure + search-item return
+    String locator = "//div[contains(@class,'%s')]//div/input";
 
     public Input(WebDriver driver, String name) {
         super(driver);
@@ -21,7 +21,6 @@ public class Input extends BaseElement {
         WebElement element;
         element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(String.format(locator, name))));
         element.sendKeys(text);
-        //driver.findElement(By.xpath(String.format(locator, name))).sendKeys(text);
     }
 
     public void selectFromDropDownAirport(String text) throws InterruptedException {
@@ -31,7 +30,5 @@ public class Input extends BaseElement {
         webElement.sendKeys(Keys.ARROW_DOWN);
         Thread.sleep(2000);
         webElement.sendKeys(Keys.ENTER);
-        /*driver.findElement(By.xpath(String.format(locator, name))).sendKeys(Keys.ARROW_DOWN);
-        driver.findElement(By.xpath(String.format(locator, name))).sendKeys(Keys.ENTER);*/
     }
 }
