@@ -1,5 +1,6 @@
 package pages;
 
+import models.Contacts;
 import models.Passenger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -28,8 +29,11 @@ public class PaymentPage extends BasePage {
         driver.findElement(By.xpath(lastNameLocator)).sendKeys(passenger.getLastName());
         driver.findElement(By.xpath(birthday)).sendKeys(passenger.getDateOfBirth());
         driver.findElement(By.xpath(documentNumber)).sendKeys(passenger.getDocumentNumber());
-        driver.findElement(By.xpath(email)).sendKeys(passenger.getEmail());
-        driver.findElement(By.xpath(phone)).sendKeys(passenger.getTelephoneNumber());
+    }
+
+    public void createPassengerContacts(Contacts contacts) {
+        driver.findElement(By.xpath(email)).sendKeys(contacts.getEmail());
+        driver.findElement(By.xpath(phone)).sendKeys(contacts.getTelephoneNumber());
     }
 
     public void onHoldPayment() {

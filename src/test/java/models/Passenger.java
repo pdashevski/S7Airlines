@@ -9,6 +9,4 @@ public class Passenger {
     String lastName;
     String dateOfBirth;
     String documentNumber;
-    String email;
-    String telephoneNumber;
 }

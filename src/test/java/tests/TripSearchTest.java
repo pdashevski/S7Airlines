@@ -1,5 +1,6 @@
 package tests;
 
+import models.Contacts;
 import models.Passenger;
 import org.testng.annotations.Test;
 import tests.base.BaseTest;
@@ -24,11 +25,15 @@ public class TripSearchTest extends BaseTest {
                 "Petr",
                 "Petrikov",
                 "01.01.1990",
-                "1234567890",
-                "test@test.com",
-                "36977777777");
+                "1234567890"
+        );
+        Contacts contacts = new Contacts(
+                "36977777777",
+                "test@test.com"
+        );
         paymentPage.sexSelect();
         paymentPage.createPassengerDetails(passenger);
+        paymentPage.createPassengerContacts(contacts);
         paymentPage.onHoldPayment();
         paymentPage.confirmCheckboxSelect();
         paymentPage.submitPassenger();
