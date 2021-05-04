@@ -30,7 +30,7 @@ public abstract class BasePage {
         }
     }
 
-    public void isElementlickable(By locator) {
+    public void isElementClickable(By locator) {
         try {
             wait.until(ExpectedConditions.elementToBeClickable(locator));
         } catch (NoSuchElementException exception) {

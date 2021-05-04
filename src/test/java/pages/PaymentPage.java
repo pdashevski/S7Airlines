@@ -1,10 +1,9 @@
 package pages;
 
 import models.Contacts;
-import models.Passenger;
+import models.AdultPassenger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import pages.base.BasePage;
 
 public class PaymentPage extends BasePage {
@@ -15,6 +14,7 @@ public class PaymentPage extends BasePage {
     String documentNumber = "//input[@data-qa='numberDocument_pax']";
     String email = "//input[@data-qa='email_contactPax']";
     String phone = "//input[@data-qa='phone_contactPax']";
+
     public static final String submitButton = "//div[@id='cart-fixed']//div[@class='js_shopping_cart_buttons']/button";
     public static final String payLaterTab = "//*[@class='js_sticky_button_trigger']//div[@data-tab-index='6']";
     public static final String female = "//div[@data-qa-error='errorGender_pax']";
@@ -24,11 +24,11 @@ public class PaymentPage extends BasePage {
         super(driver);
     }
 
-    public void createPassengerDetails(Passenger passenger) {
-        driver.findElement(By.xpath(firstNameLocator)).sendKeys(passenger.getFirstName());
-        driver.findElement(By.xpath(lastNameLocator)).sendKeys(passenger.getLastName());
-        driver.findElement(By.xpath(birthday)).sendKeys(passenger.getDateOfBirth());
-        driver.findElement(By.xpath(documentNumber)).sendKeys(passenger.getDocumentNumber());
+    public void createPassengerDetails(AdultPassenger adultPassenger) {
+        driver.findElement(By.xpath(firstNameLocator)).sendKeys(adultPassenger.getFirstName());
+        driver.findElement(By.xpath(lastNameLocator)).sendKeys(adultPassenger.getLastName());
+        driver.findElement(By.xpath(birthday)).sendKeys(adultPassenger.getDateOfBirth());
+        driver.findElement(By.xpath(documentNumber)).sendKeys(adultPassenger.getDocumentNumber());
     }
 
     public void createPassengerContacts(Contacts contacts) {
@@ -46,8 +46,9 @@ public class PaymentPage extends BasePage {
 
     public void submitPassenger() {
         isElementPresent(By.xpath(submitButton));
-        isElementlickable(By.xpath(submitButton));
+        isElementClickable(By.xpath(submitButton));
         driver.findElement(By.xpath(submitButton)).click();
+        //driver.findElement(By.xpath(submitButton)).click();
     }
 
     public void confirmCheckboxSelect() {

@@ -4,7 +4,7 @@ import lombok.*;
 
 @Data
 @AllArgsConstructor
-public class Passenger {
+public class AdultPassenger {
     String firstName;
     String lastName;
     String dateOfBirth;

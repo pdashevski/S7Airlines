@@ -1,7 +1,7 @@
 package tests;
 
 import models.Contacts;
-import models.Passenger;
+import models.AdultPassenger;
 import org.testng.annotations.Test;
 import tests.base.BaseTest;
 import tests.base.RetryAnalyzer;
@@ -21,7 +21,7 @@ public class TripSearchTest extends BaseTest {
         flightSearchPage.flightSubmit();
         baggageAndSeatsPage.autoAndHotelsSubmit();
         autoAndHotelsPage.baggageAndSeatsSubmit();
-        Passenger passenger = new Passenger(
+        AdultPassenger adultPassenger = new AdultPassenger(
                 "Petr",
                 "Petrikov",
                 "01.01.1990",
@@ -32,7 +32,7 @@ public class TripSearchTest extends BaseTest {
                 "test@test.com"
         );
         paymentPage.sexSelect();
-        paymentPage.createPassengerDetails(passenger);
+        paymentPage.createPassengerDetails(adultPassenger);
         paymentPage.createPassengerContacts(contacts);
         paymentPage.onHoldPayment();
         paymentPage.confirmCheckboxSelect();
