@@ -21,6 +21,7 @@ public class BaseTest {
     protected BaggageAndSeatsPage baggageAndSeatsPage;
     protected AutoAndHotelsPage autoAndHotelsPage;
     protected PaymentPage paymentPage;
+    protected ConfirmPage confirmPage;
 
     @BeforeMethod(description = "Browser starting")
     public void browserStart(ITestContext iTestContext) {
@@ -38,6 +39,7 @@ public class BaseTest {
         baggageAndSeatsPage = new BaggageAndSeatsPage(driver);
         autoAndHotelsPage = new AutoAndHotelsPage(driver);
         paymentPage = new PaymentPage(driver);
+        confirmPage = new ConfirmPage(driver);
     }
 
     @AfterMethod(alwaysRun = true, description = "Browser closing")

@@ -18,17 +18,35 @@ public class Input extends BaseElement {
     }
 
     public void write(String text) {
+        try {
+            Thread.sleep(20000);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         WebElement element;
         element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(String.format(locator, name))));
+        element.click();
+        try {
+            Thread.sleep(2000);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         element.sendKeys(text);
+        try {
+            Thread.sleep(6000);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void selectFromDropDownAirport(String text) throws InterruptedException {
-        write(text);
-        Thread.sleep(2000);
         WebElement webElement = driver.findElement(By.xpath(String.format(locator, name)));
+
+        write(text);
+        //Thread.sleep(5000);
+
         webElement.sendKeys(Keys.ARROW_DOWN);
-        Thread.sleep(2000);
+        Thread.sleep(5000);
         webElement.sendKeys(Keys.ENTER);
     }
 }

@@ -19,6 +19,8 @@ public class FlightSearchPage extends BasePage {
         list.fare();
     }
 
+
+
     public void flightSubmit() {
         isElementPresent(By.xpath(submitButton));
         driver.findElement(By.xpath(submitButton)).click();

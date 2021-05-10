@@ -3,9 +3,12 @@ package pages;
 import models.Contacts;
 import models.AdultPassenger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import pages.base.BasePage;
+
+import java.util.concurrent.TimeoutException;
 
 public class PaymentPage extends BasePage {
 
@@ -33,7 +36,15 @@ public class PaymentPage extends BasePage {
         //driver.findElement(By.xpath(firstNameLocator)).sendKeys(adultPassenger.getFirstName());
         //driver.findElement(By.xpath(lastNameLocator)).sendKeys(adultPassenger.getLastName());
         //driver.findElement(By.xpath(birthday)).sendKeys(adultPassenger.getDateOfBirth());
-        driver.findElement(By.xpath(documentNumber)).sendKeys(adultPassenger.getDocumentNumber());
+        try {
+            driver.findElement(By.xpath(documentNumber)).click();
+            driver.findElement(By.xpath(documentNumber)).sendKeys(adultPassenger.getDocumentNumber());
+        } catch (NoSuchElementException exception) {
+            exception.printStackTrace();
+        } finally {
+            driver.findElement(By.xpath(documentNumber)).click();
+            driver.findElement(By.xpath(documentNumber)).sendKeys(adultPassenger.getDocumentNumber());
+        }
     }
 
     public void checkFirstNameIsNotEmpty(AdultPassenger adultPassenger) {
@@ -115,6 +126,11 @@ public class PaymentPage extends BasePage {
     }
 
     public void submitPassenger() {
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException exception) {
+            exception.printStackTrace();
+        }
         isElementPresent(By.xpath(submitButton));
         isElementClickable(By.xpath(submitButton));
         driver.findElement(By.xpath(submitButton)).click();
