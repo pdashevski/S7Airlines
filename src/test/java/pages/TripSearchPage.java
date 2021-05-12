@@ -12,8 +12,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 import pages.base.BasePage;
 import utils.PropertyReader;
 
@@ -23,6 +21,8 @@ public class TripSearchPage extends BasePage {
     public static final String destinationRoute = "search-item return";
     public static final String feedbackLocator = "//div[@id='_hj_feedback_container']//button";
     protected WebDriverWait wait;
+    public static final String AIRPOR_FIELD = "//div[contains(@class,'%s')]//div/input";
+    public static final String CALENDAR_DATE = "//div[@id='calendar-root']/button[contains(@class,'filled_ptf')]";
 
     public TripSearchPage(WebDriver driver) {
         super(driver);
@@ -45,11 +45,11 @@ public class TripSearchPage extends BasePage {
         }
     }
 
-    public void airportFrom(String origin) throws InterruptedException {
+    public void airportFrom(String origin) {
         new Input(driver, originRoute).selectFromDropDownAirport(origin);
     }
 
-    public void airportTo(String destination) throws InterruptedException {
+    public void airportTo(String destination) {
         new Input(driver, destinationRoute).selectFromDropDownAirport(destination);
     }
 
@@ -63,5 +63,20 @@ public class TripSearchPage extends BasePage {
 
     public void searchSubmit() {
         new Button(driver).clickSubmitButton();
+    }
+
+    public String getAirportFromValue() {
+        String value = driver.findElement(By.xpath(String.format(AIRPOR_FIELD, originRoute))).getAttribute("value");
+        return value;
+    }
+
+    public String getAirportToValue() {
+        String value = driver.findElement(By.xpath(String.format(AIRPOR_FIELD, destinationRoute))).getAttribute("value");
+        return value;
+    }
+
+    public String getCalendarDate() {
+        String value = driver.findElement(By.xpath(CALENDAR_DATE)).getText();
+        return value;
     }
 }

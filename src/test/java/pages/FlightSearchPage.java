@@ -9,6 +9,7 @@ import pages.base.BasePage;
 public class FlightSearchPage extends BasePage {
 
     public static final String submitButton = "//div[@data-qa='shopCart_block']//span[contains(text(),'Продолжить')]/ancestor::button";
+    public static final String pageMainLocator = "//div[@data-qa='tripToBlock']//h3";
 
     public FlightSearchPage(WebDriver driver) {
         super(driver);
@@ -28,5 +29,9 @@ public class FlightSearchPage extends BasePage {
         } catch (ElementClickInterceptedException exception) {
             System.out.println("Element" +submitButton + " cannot be clickable");
         }
+    }
+
+    public boolean isPageOpened() {
+        return driver.findElement(By.xpath(pageMainLocator)).isDisplayed();
     }
 }
