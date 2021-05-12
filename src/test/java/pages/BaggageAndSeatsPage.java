@@ -1,5 +1,6 @@
 package pages;
 
+import elements.PostSellBlock;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -9,6 +10,8 @@ public class BaggageAndSeatsPage extends BasePage {
 
     public static final String submitButton = "//span[contains(text(),'Далее')]/ancestor::button";
     public static final String pageMainLocator = "//h2[contains(text(),'Выберите услуги для комфортной поездки')]";
+    public static final String meal = "meal_postSellBlock";
+    public static final String seats = "seat_postSellBlock";
 
     public BaggageAndSeatsPage(WebDriver driver) {
         super(driver);
@@ -22,5 +25,12 @@ public class BaggageAndSeatsPage extends BasePage {
     @Step("Проверка страницы BaggageAndSeats на переход с предыдущей страницы")
     public boolean isPageOpened() {
         return driver.findElement(By.xpath(pageMainLocator)).isDisplayed();
+    }
+
+    @Step("ыва")
+    public boolean asd(String postSellType) {
+        if (postSellType.equals(meal)) {
+            return new PostSellBlock(driver, meal).isPostSellBlockDisplayed();
+        } else return new PostSellBlock(driver, seats).isPostSellBlockDisplayed();
     }
 }
