@@ -17,11 +17,13 @@ public class FlightSearchPage extends BasePage {
         super(driver);
     }
 
+    @Step("Выбираем сегмент, а затем тариф")
     public void selectFare() {
         list.segment();
         list.fare();
     }
 
+    @Step("Кликаем кнопку продолжить и идем дальше по флоу")
     public void flightSubmit() {
         isElementPresent(By.xpath(submitButton));
         isElementClickable(By.xpath(submitButton));
@@ -37,19 +39,22 @@ public class FlightSearchPage extends BasePage {
         return driver.findElement(By.xpath(pageMainLocator)).isDisplayed();
     }
 
-
+    @Step("Получаем время вылета предполагаемого перелета")
     public String getTimeDepartureBeforeSelect() {
         return list.flightDepartTimeBefore();
     }
 
+    @Step("Получаем время прибытия предполагаемого перелета")
     public String getTimeArrivalBeforeSelect() {
         return list.flightArrivalTimeBefore();
     }
 
+    @Step("Получаем время вылета выбранного перелета")
     public String getTimeDepartureAfterSelect() {
         return list.flightDepartTimeAfter();
     }
 
+    @Step("Получаем время прибытия выбранного перелета")
     public String getTimeArrivalAfterSelect() {
         return list.flightArrivalTimeAfter();
     }

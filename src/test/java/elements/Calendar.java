@@ -1,6 +1,7 @@
 package elements;
 
 import elements.base.BaseElement;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -9,7 +10,7 @@ import org.testng.Assert;
 
 public class Calendar extends BaseElement {
 
-    String calendaDayLocator = "//time[contains(text(),'%s')]";
+    String calendarDayLocator = "//time[contains(text(),'%s')]";
     String calendarMonthLocator = "//li[@data-month-name='%s']";
     String month;
     String day;
@@ -20,12 +21,14 @@ public class Calendar extends BaseElement {
         this.day = day;
     }
 
+    @Step("Выбор месяца и дня в календаре")
     public void selectMonthAndDayInCalendar() {
         isMonthOrDayPresentInCalendar(By.xpath(String.format(calendarMonthLocator, month)));
-        isMonthOrDayPresentInCalendar(By.xpath(String.format(calendaDayLocator, day)));
-        driver.findElement(By.xpath(String.format(calendarMonthLocator + calendaDayLocator, month, day))).click();
+        isMonthOrDayPresentInCalendar(By.xpath(String.format(calendarDayLocator, day)));
+        driver.findElement(By.xpath(String.format(calendarMonthLocator + calendarDayLocator, month, day))).click();
     }
 
+    @Step("Проверка существования месяца или дня в календаре")
     public void isMonthOrDayPresentInCalendar(By locator) {
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(locator));

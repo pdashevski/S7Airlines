@@ -7,8 +7,7 @@ import tests.base.RetryAnalyzer;
 
 public class FlightSearchTest extends BaseTest {
 
-    @Test(retryAnalyzer = RetryAnalyzer.class, description = "Выбор рейса. Проверка на совпадение" +
-            " выбранного рейса (до подтверждения и после)")
+    @Test(description = "Выбор рейса. Проверка на совпадение выбранного рейса (до подтверждения и после)")
     public void flighSearchCheckDepaAndArriveTimeForFare() {
         tripSearchPage.open();
         tripSearchPage.tripTypeRadioButtonSelect(WAY);
@@ -31,8 +30,7 @@ public class FlightSearchTest extends BaseTest {
 
     //TODO добавить тест на проверку совпадения тарифа
 
-    @Test(retryAnalyzer = RetryAnalyzer.class, description = "Выбор рейса. Переход на страницу добавления" +
-            " багажа и выбора мест")
+    @Test(description = "Выбор рейса. Переход на страницу добавления багажа и выбора мест")
     public void flighSearchCheckBagAndSeatsPageRedirectionWithUserData() {
         tripSearchPage.open();
         tripSearchPage.tripTypeRadioButtonSelect(WAY);

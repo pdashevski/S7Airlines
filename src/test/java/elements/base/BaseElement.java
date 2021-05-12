@@ -1,5 +1,6 @@
 package elements.base;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
@@ -18,6 +19,7 @@ public abstract class BaseElement {
         wait = new WebDriverWait(driver, 5);
     }
 
+    @Step("Проверяем, существует ли элемент в DOM")
     public void isElementPresent(By locator) {
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(locator));

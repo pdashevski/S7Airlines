@@ -9,7 +9,7 @@ import tests.base.RetryAnalyzer;
 
 public class TripSearchTest extends BaseTest {
 
-    @Test(retryAnalyzer = RetryAnalyzer.class, description = "Тестовый тест на полное флоу")
+    /*@Test(retryAnalyzer = RetryAnalyzer.class, description = "Тестовый тест на полное флоу")
     public void openPage() throws InterruptedException {
         tripSearchPage.open();
         tripSearchPage.tripTypeRadioButtonSelect("В одну сторону");
@@ -39,9 +39,9 @@ public class TripSearchTest extends BaseTest {
         paymentPage.confirmCheckboxSelect();
         paymentPage.submitPassenger();
         System.out.println(confirmPage.getPNR());
-    }
+    }*/
 
-    @Test(retryAnalyzer = RetryAnalyzer.class, description = "Поиск путешествия. Проверка аэропортов")
+    @Test(description = "Поиск путешествия. Проверка аэропортов")
     public void tripSearchCheckingOriginAndDestination() {
         tripSearchPage.open();
         tripSearchPage.tripTypeRadioButtonSelect(WAY);
@@ -51,7 +51,7 @@ public class TripSearchTest extends BaseTest {
         Assert.assertEquals(tripSearchPage.getAirportToValue(), "Новосибирск, Россия", "Аэропорт прибытия не был найден");
     }
 
-    @Test(retryAnalyzer = RetryAnalyzer.class, description = "Поиск путешествия. Провекра даты вылета")
+    @Test(description = "Поиск путешествия. Провекра даты вылета")
     public void tripSearchCheckingCalendarData() {
         tripSearchPage.open();
         tripSearchPage.tripTypeRadioButtonSelect(WAY);
@@ -62,7 +62,7 @@ public class TripSearchTest extends BaseTest {
         Assert.assertEquals(tripSearchPage.getCalendarDate(), "26.05.2021", "Дата вылета не совпадает");
     }
 
-    @Test(retryAnalyzer = RetryAnalyzer.class, description = "Поиск путешествия. Переход на страницу выбора рейса")
+    @Test(description = "Поиск путешествия. Переход на страницу выбора рейса")
     public void tripSearchCheckFlightPageRedirectionWithUserData() {
         tripSearchPage.open();
         tripSearchPage.tripTypeRadioButtonSelect(WAY);
