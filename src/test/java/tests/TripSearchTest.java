@@ -9,13 +9,6 @@ import tests.base.RetryAnalyzer;
 
 public class TripSearchTest extends BaseTest {
 
-    public static final String WAY = "В одну сторону";
-    public static final String AIRPORT_FROM = "DME";
-    public static final String AIRPORT_TO = "OVB";
-    public static final String CALENDAR_FROM = "Туда";
-    public static final String MONTH = "май";
-    public static final String DAY_NUMBER = "26";
-
     @Test(retryAnalyzer = RetryAnalyzer.class, description = "Тестовый тест на полное флоу")
     public void openPage() throws InterruptedException {
         tripSearchPage.open();
@@ -48,8 +41,8 @@ public class TripSearchTest extends BaseTest {
         System.out.println(confirmPage.getPNR());
     }
 
-    @Test(retryAnalyzer = RetryAnalyzer.class, description = "Создание путешествия. Проверка аэропортов")
-    public void tripCreationCheckingOriginAndDestination() {
+    @Test(retryAnalyzer = RetryAnalyzer.class, description = "Поиск путешествия. Проверка аэропортов")
+    public void tripSearchCheckingOriginAndDestination() {
         tripSearchPage.open();
         tripSearchPage.tripTypeRadioButtonSelect(WAY);
         tripSearchPage.airportFrom(AIRPORT_FROM);
@@ -58,8 +51,8 @@ public class TripSearchTest extends BaseTest {
         Assert.assertEquals(tripSearchPage.getAirportToValue(), "Новосибирск, Россия", "Аэропорт прибытия не был найден");
     }
 
-    @Test(retryAnalyzer = RetryAnalyzer.class, description = "Создание путешествия. Провекра даты вылета")
-    public void tripCreationCheckingCalendarData() {
+    @Test(retryAnalyzer = RetryAnalyzer.class, description = "Поиск путешествия. Провекра даты вылета")
+    public void tripSearchCheckingCalendarData() {
         tripSearchPage.open();
         tripSearchPage.tripTypeRadioButtonSelect(WAY);
         tripSearchPage.airportFrom(AIRPORT_FROM);
@@ -69,8 +62,8 @@ public class TripSearchTest extends BaseTest {
         Assert.assertEquals(tripSearchPage.getCalendarDate(), "26.05.2021", "Дата вылета не совпадает");
     }
 
-    @Test(retryAnalyzer = RetryAnalyzer.class, description = "Создание путешествия. Переход на страницу выбора рейса")
-    public void tripCreationCheckFlightPageRedirectionWithUserData() {
+    @Test(retryAnalyzer = RetryAnalyzer.class, description = "Поиск путешествия. Переход на страницу выбора рейса")
+    public void tripSearchCheckFlightPageRedirectionWithUserData() {
         tripSearchPage.open();
         tripSearchPage.tripTypeRadioButtonSelect(WAY);
         tripSearchPage.airportFrom(AIRPORT_FROM);

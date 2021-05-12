@@ -23,6 +23,13 @@ public class BaseTest {
     protected PaymentPage paymentPage;
     protected ConfirmPage confirmPage;
 
+    public static final String WAY = "В одну сторону";
+    public static final String AIRPORT_FROM = "DME";
+    public static final String AIRPORT_TO = "OVB";
+    public static final String CALENDAR_FROM = "Туда";
+    public static final String MONTH = "май";
+    public static final String DAY_NUMBER = "26";
+
     @BeforeMethod(description = "Browser starting")
     public void browserStart(ITestContext iTestContext) {
         ChromeOptions chromeOptions = new ChromeOptions();
