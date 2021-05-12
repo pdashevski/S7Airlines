@@ -11,12 +11,11 @@ public class TripSearchTest extends BaseTest {
     @Test(retryAnalyzer = RetryAnalyzer.class, description = "Тестовый тест на полное флоу")
     public void openPage() throws InterruptedException {
         tripSearchPage.open();
-        //tripSearchPage.isFeedbackDisplayed();
         tripSearchPage.tripTypeRadioButtonSelect("В одну сторону");
         tripSearchPage.airportFrom("DME");
         tripSearchPage.airportTo("OVB");
         tripSearchPage.calendarClickButton("Туда");
-        tripSearchPage.calendarSelectMonthAndDay("май", "15");
+        tripSearchPage.calendarSelectMonthAndDay("май", "25");
         tripSearchPage.searchSubmit();
         flightSearchPage.selectFare();
         flightSearchPage.flightSubmit();
@@ -38,8 +37,6 @@ public class TripSearchTest extends BaseTest {
         paymentPage.onHoldPayment();
         paymentPage.confirmCheckboxSelect();
         paymentPage.submitPassenger();
-        String xxx= confirmPage.getPNR();
-        System.out.println(xxx);
-
+        System.out.println(confirmPage.getPNR());
     }
 }

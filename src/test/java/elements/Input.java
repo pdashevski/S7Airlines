@@ -19,7 +19,7 @@ public class Input extends BaseElement {
 
     public void write(String text) {
         try {
-            Thread.sleep(20000);
+            Thread.sleep(10000);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -39,14 +39,15 @@ public class Input extends BaseElement {
         }
     }
 
-    public void selectFromDropDownAirport(String text) throws InterruptedException {
+    public void selectFromDropDownAirport(String text) {
         WebElement webElement = driver.findElement(By.xpath(String.format(locator, name)));
-
         write(text);
-        //Thread.sleep(5000);
-
         webElement.sendKeys(Keys.ARROW_DOWN);
-        Thread.sleep(5000);
+        try {
+            Thread.sleep(5000);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         webElement.sendKeys(Keys.ENTER);
     }
 }

@@ -2,6 +2,7 @@ package pages;
 
 import elements.FlightList;
 import org.openqa.selenium.By;
+import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.WebDriver;
 import pages.base.BasePage;
 
@@ -19,10 +20,13 @@ public class FlightSearchPage extends BasePage {
         list.fare();
     }
 
-
-
     public void flightSubmit() {
         isElementPresent(By.xpath(submitButton));
-        driver.findElement(By.xpath(submitButton)).click();
+        isElementClickable(By.xpath(submitButton));
+        try {
+            driver.findElement(By.xpath(submitButton)).click();
+        } catch (ElementClickInterceptedException exception) {
+            System.out.println("Element" +submitButton + " cannot be clickable");
+        }
     }
 }

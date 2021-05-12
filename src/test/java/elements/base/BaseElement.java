@@ -25,12 +25,4 @@ public abstract class BaseElement {
             Assert.fail("Element" + locator + " cannot be found");
         }
     }
-
-    public void isMonthOrDayPresentInCalendar(By locator) {
-        try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-        } catch (NoSuchElementException exception) {
-            Assert.fail("Month in calendar" + locator + " cannot be found");
-        }
-    }
 }

@@ -18,10 +18,6 @@ public abstract class BasePage {
         wait = new WebDriverWait(driver, 25);
     }
 
-    public void isPageOpened() {
-
-    }
-
     public void isElementPresent(By locator) {
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
@@ -37,5 +33,4 @@ public abstract class BasePage {
             Assert.fail("Element" + locator + " cannot be found");
         }
     }
-
 }

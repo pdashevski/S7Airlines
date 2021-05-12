@@ -29,9 +29,6 @@ public class ConfirmPage extends BasePage {
 
     public String getPNR() {
         expandPurchaseProductsBlock();
-        System.out.println("-------------------------------erwerwerwer====------");
-        System.out.println(driver.findElement(By.xpath(locatorPNR)).getText());
-        System.out.println("==========================================");
         return driver.findElement(By.xpath(locatorPNR)).getText();
     }
 }
