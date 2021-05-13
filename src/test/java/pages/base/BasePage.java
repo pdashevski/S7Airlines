@@ -1,5 +1,6 @@
 package pages.base;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -15,13 +16,10 @@ public abstract class BasePage {
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
-        wait = new WebDriverWait(driver, 5);
+        wait = new WebDriverWait(driver, 25);
     }
 
-    public void isPageOpened() {
-
-    }
-
+    @Step("Проверяем, существует ли элемент на странице")
     public void isElementPresent(By locator) {
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
@@ -30,4 +28,12 @@ public abstract class BasePage {
         }
     }
 
+    @Step("Проверяем, можно ли кликнуть на элемент страницы")
+    public void isElementClickable(By locator) {
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(locator));
+        } catch (NoSuchElementException exception) {
+            Assert.fail("Element" + locator + " cannot be found");
+        }
+    }
 }

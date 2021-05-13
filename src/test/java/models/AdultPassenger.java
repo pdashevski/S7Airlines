@@ -1,14 +1,13 @@
 package models;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class Passenger {
+public class AdultPassenger {
     String firstName;
     String lastName;
     String dateOfBirth;
     String documentNumber;
-    String email;
-    String telephoneNumber;
 }
