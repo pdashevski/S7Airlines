@@ -10,6 +10,7 @@
             <class name="tests.FlightSearchTest"/>
             <class name="tests.BaggageAndSeatsTest"/>
             <class name="tests.AutoAndHotelsTest"/>
+            <class name="tests.PaymentTest"/>
         </classes>
     </test> <!-- Test -->
 </suite>

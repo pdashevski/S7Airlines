@@ -27,7 +27,7 @@ public class TripSearchPage extends BasePage {
 
     public TripSearchPage(WebDriver driver) {
         super(driver);
-        wait = new WebDriverWait(driver, 25);
+        wait = new WebDriverWait(driver, 15);
     }
 
     @Step("Открытие начальной страницы поиска путешествия")

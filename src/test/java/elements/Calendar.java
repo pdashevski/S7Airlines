@@ -33,7 +33,7 @@ public class Calendar extends BaseElement {
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         } catch (NoSuchElementException exception) {
-            Assert.fail("Month in calendar" + locator + " cannot be found");
+            Assert.fail("Month in calendar " + locator + " cannot be found");
         }
     }
 }

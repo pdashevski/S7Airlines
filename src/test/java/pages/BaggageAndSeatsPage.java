@@ -27,8 +27,8 @@ public class BaggageAndSeatsPage extends BasePage {
         return driver.findElement(By.xpath(pageMainLocator)).isDisplayed();
     }
 
-    @Step("ыва")
-    public boolean asd(String postSellType) {
+    @Step("Проверка продуктов на странца")
+    public boolean postSellProductsSelecting(String postSellType) {
         if (postSellType.equals(meal)) {
             return new PostSellBlock(driver, meal).isPostSellBlockDisplayed();
         } else return new PostSellBlock(driver, seats).isPostSellBlockDisplayed();

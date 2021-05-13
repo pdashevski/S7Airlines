@@ -30,25 +30,25 @@ public class FlightList extends BaseElement {
         driver.findElement(By.xpath(fareLocator)).click();
     }
 
-    @Step("Выборка времени \"вылета\" рейса для сравнения с итоговым результатом")
+    @Step("Выборка времени 'вылета' рейса для сравнения с итоговым результатом")
     public String flightDepartTimeBefore() {
         String value = driver.findElement(By.xpath(departureTimeBeforeSelect)).getText();
         return value;
     }
 
-    @Step("Сравнение времени \"вылета\" рейса с ранее выбранным")
+    @Step("Сравнение времени 'вылета' рейса с ранее выбранным")
     public String flightDepartTimeAfter() {
         String value = driver.findElement(By.xpath(departureTimeAfterSelect)).getText();
         return value;
     }
 
-    @Step("Выборка времени \"прибытия\" рейса для сравнения с итоговым результатом")
+    @Step("Выборка времени 'прибытия' рейса для сравнения с итоговым результатом")
     public String flightArrivalTimeBefore() {
         String value = driver.findElement(By.xpath(arrivalTimeBeforeSelect)).getText();
         return value;
     }
 
-    @Step("Сравнение времени \"прибытия\" рейса с ранее выбранным")
+    @Step("Сравнение времени 'прибытия' рейса с ранее выбранным")
     public String flightArrivalTimeAfter() {
         String value = driver.findElement(By.xpath(arrivalTimeAfterSelect)).getText();
         return value;

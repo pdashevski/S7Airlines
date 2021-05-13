@@ -3,7 +3,6 @@ package tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import tests.base.BaseTest;
-import tests.base.RetryAnalyzer;
 
 public class BaggageAndSeatsTest extends BaseTest {
 
@@ -21,7 +20,7 @@ public class BaggageAndSeatsTest extends BaseTest {
         tripSearchPage.searchSubmit();
         flightSearchPage.selectFare();
         flightSearchPage.flightSubmit();
-        Assert.assertTrue(baggageAndSeatsPage.asd(POSTSELL_SEATS), "Блок с местами не найден на странице");
+        Assert.assertTrue(baggageAndSeatsPage.postSellProductsSelecting(POSTSELL_SEATS), "Блок с местами не найден на странице");
     }
 
     @Test(description = "Выбор услуг. Проверка блока с питанием")
@@ -35,7 +34,7 @@ public class BaggageAndSeatsTest extends BaseTest {
         tripSearchPage.searchSubmit();
         flightSearchPage.selectFare();
         flightSearchPage.flightSubmit();
-        Assert.assertTrue(baggageAndSeatsPage.asd(POSTSELL_MEAL), "Блок с питанием не найден на странице");
+        Assert.assertTrue(baggageAndSeatsPage.postSellProductsSelecting(POSTSELL_MEAL), "Блок с питанием не найден на странице");
     }
 
     @Test(description = "Выбор услуг. Проверка блока с питанием")

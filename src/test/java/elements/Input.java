@@ -19,7 +19,7 @@ public class Input extends BaseElement {
 
     public void write(String text) {
         try {
-            Thread.sleep(10000);
+            Thread.sleep(5000);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -33,7 +33,7 @@ public class Input extends BaseElement {
         }
         element.sendKeys(text);
         try {
-            Thread.sleep(6000);
+            Thread.sleep(5000);
         } catch (Exception e) {
             e.printStackTrace();
         }

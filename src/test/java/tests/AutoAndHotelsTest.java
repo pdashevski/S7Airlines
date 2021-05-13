@@ -1,12 +1,13 @@
 package tests;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import tests.base.BaseTest;
 
 public class AutoAndHotelsTest extends BaseTest {
 
-    @Test
-    public void asd() {
+    @Test(description = "Авто и Отели. Проверка перехода на страницу оплаты брони")
+    public void autoAndHotelsPageCheckRedirectionToPaymentWithUserData() {
         tripSearchPage.open();
         tripSearchPage.tripTypeRadioButtonSelect(WAY);
         tripSearchPage.airportFrom(AIRPORT_FROM);
@@ -18,6 +19,6 @@ public class AutoAndHotelsTest extends BaseTest {
         flightSearchPage.flightSubmit();
         baggageAndSeatsPage.autoAndHotelsSubmit();
         autoAndHotelsPage.baggageAndSeatsSubmit();
-        //TODO
+        Assert.assertTrue(paymentPage.isPageOpened(), "Не удалось открыть страницу оплаты");
     }
 }

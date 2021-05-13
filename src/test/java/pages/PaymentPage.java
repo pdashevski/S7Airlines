@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import models.Contacts;
 import models.AdultPassenger;
 import org.openqa.selenium.By;
@@ -8,14 +9,12 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import pages.base.BasePage;
 
-import java.util.concurrent.TimeoutException;
-
 public class PaymentPage extends BasePage {
 
     String firstNameLocator = "//input[@data-qa='firstName_pax']";
     String lastNameLocator = "//input[@data-qa='lastName_pax']";
-    String birthday = "//input[@data-qa='birthday_pax']";
-    String documentNumber = "//input[@data-qa='numberDocument_pax']";
+    String birthdayLocator = "//input[@data-qa='birthday_pax']";
+    String documentNumberLocator = "//input[@data-qa='numberDocument_pax']";
     String email = "//input[@data-qa='email_contactPax']";
     String phone = "//input[@data-qa='phone_contactPax']";
 
@@ -23,11 +22,13 @@ public class PaymentPage extends BasePage {
     public static final String payLaterTab = "//*[@class='js_sticky_button_trigger']//div[@data-tab-index='6']";
     public static final String female = "//div[@data-qa-error='errorGender_pax']";
     public static final String confirmCheckbox = "//input[@id='terms-check']";
+    String passengerLocator = "//div[@id='persons-title']/h2";
 
     public PaymentPage(WebDriver driver) {
         super(driver);
     }
 
+    @Step("Создание пассажира")
     public void createPassengerDetails(AdultPassenger adultPassenger) {
         checkFirstNameIsNotEmpty(adultPassenger);
         checkLastNameIsNotEmpty(adultPassenger);
@@ -37,14 +38,34 @@ public class PaymentPage extends BasePage {
         //driver.findElement(By.xpath(lastNameLocator)).sendKeys(adultPassenger.getLastName());
         //driver.findElement(By.xpath(birthday)).sendKeys(adultPassenger.getDateOfBirth());
         try {
-            driver.findElement(By.xpath(documentNumber)).click();
-            driver.findElement(By.xpath(documentNumber)).sendKeys(adultPassenger.getDocumentNumber());
+            driver.findElement(By.xpath(documentNumberLocator)).click();
+            driver.findElement(By.xpath(documentNumberLocator)).sendKeys(adultPassenger.getDocumentNumber());
         } catch (NoSuchElementException exception) {
             exception.printStackTrace();
         } finally {
-            driver.findElement(By.xpath(documentNumber)).click();
-            driver.findElement(By.xpath(documentNumber)).sendKeys(adultPassenger.getDocumentNumber());
+            driver.findElement(By.xpath(documentNumberLocator)).click();
+            driver.findElement(By.xpath(documentNumberLocator)).sendKeys(adultPassenger.getDocumentNumber());
         }
+    }
+
+    @Step("Получаем и прокидываем введенное firstName пассажира")
+    public String firstNamePassengerField() {
+        return driver.findElement(By.xpath(firstNameLocator)).getAttribute("value");
+    }
+
+    @Step("Получаем и прокидываем введенное firstName пассажира")
+    public String lastNamePassengerField() {
+        return driver.findElement(By.xpath(lastNameLocator)).getAttribute("value");
+    }
+
+    @Step("Получаем и прокидываем введенное birthday пассажира")
+    public String dateOfirthPassengerField() {
+        return driver.findElement(By.xpath(birthdayLocator)).getAttribute("value");
+    }
+
+    @Step("Получаем и прокидываем введенное documentNumber пассажира")
+    public String documentNumberOfPassengerField() {
+        return driver.findElement(By.xpath(documentNumberLocator)).getAttribute("value");
     }
 
     public void checkFirstNameIsNotEmpty(AdultPassenger adultPassenger) {
@@ -82,11 +103,11 @@ public class PaymentPage extends BasePage {
     public void checkBirthdayIsNotEmpty(AdultPassenger adultPassenger) {
         boolean isNotEmpty = false;
         try {
-            isElementPresent(By.xpath(birthday));
+            isElementPresent(By.xpath(birthdayLocator));
             while (!isNotEmpty) {
-                driver.findElement(By.xpath(birthday)).clear();
-                driver.findElement(By.xpath(birthday)).sendKeys(adultPassenger.getDateOfBirth());
-                if (driver.findElement(By.xpath(birthday)).getAttribute("value").equals(adultPassenger.getDateOfBirth())) {
+                driver.findElement(By.xpath(birthdayLocator)).clear();
+                driver.findElement(By.xpath(birthdayLocator)).sendKeys(adultPassenger.getDateOfBirth());
+                if (driver.findElement(By.xpath(birthdayLocator)).getAttribute("value").equals(adultPassenger.getDateOfBirth())) {
                     isNotEmpty = true;
                 }
             }
@@ -98,12 +119,12 @@ public class PaymentPage extends BasePage {
     public void checkDocumentNumberIsNotEmpty(AdultPassenger adultPassenger) {
         boolean isNotEmpty = false;
         try {
-            isElementPresent(By.xpath(documentNumber));
+            isElementPresent(By.xpath(documentNumberLocator));
             while (!isNotEmpty) {
-                driver.findElement(By.xpath(documentNumber)).clear();
-                driver.findElement(By.xpath(documentNumber)).sendKeys(adultPassenger.getDocumentNumber());
-                Thread.sleep(10000);
-                if (driver.findElement(By.xpath(documentNumber)).getAttribute("value").equals(adultPassenger.getDocumentNumber())) {
+                driver.findElement(By.xpath(documentNumberLocator)).clear();
+                driver.findElement(By.xpath(documentNumberLocator)).sendKeys(adultPassenger.getDocumentNumber());
+                Thread.sleep(8000);
+                if (driver.findElement(By.xpath(documentNumberLocator)).getAttribute("value").equals(adultPassenger.getDocumentNumber())) {
                     isNotEmpty = true;
                 }
             }
@@ -112,22 +133,49 @@ public class PaymentPage extends BasePage {
         }
     }
 
+    @Step("Создание онтактных данных пассажира")
     public void createPassengerContacts(Contacts contacts) {
         driver.findElement(By.xpath(email)).sendKeys(contacts.getEmail());
         driver.findElement(By.xpath(phone)).sendKeys(contacts.getTelephoneNumber());
+    }
+
+    @Step("Получаем и прокидываем введенный email пассажира")
+    public String emailPassengerField() {
+        return driver.findElement(By.xpath(email)).getAttribute("value");
+    }
+
+    @Step("Получаем и прокидываем введенный phone пассажира")
+    public String phonePassengerField() {
+        return driver.findElement(By.xpath(phone)).getAttribute("value");
     }
 
     public void onHoldPayment() {
         driver.findElement(By.xpath(payLaterTab)).click();
     }
 
+    @Step("Выбораем пол пассажира")
     public void sexSelect() {
-        driver.findElement(By.xpath(female)).click();
+        try {
+            driver.findElement(By.xpath(female)).click();
+        } catch (NoSuchElementException exception) {
+            Assert.fail("Не удалось выбрать пол пассажира. RadioButton не найден");
+        }
+    }
+
+    public boolean sexRadioButtonPresent() {
+        try {
+            if (driver.findElement(By.xpath(female)).isDisplayed()) {
+                return true;
+            }
+        } catch (NoSuchElementException exception) {
+            Assert.fail("Пол пассажира не совпал с выбранным");
+        }
+        return false;
     }
 
     public void submitPassenger() {
         try {
-            Thread.sleep(10000);
+            Thread.sleep(7000);
         } catch (InterruptedException exception) {
             exception.printStackTrace();
         }
@@ -139,5 +187,10 @@ public class PaymentPage extends BasePage {
 
     public void confirmCheckboxSelect() {
         driver.findElement(By.xpath(confirmCheckbox)).click();
+    }
+
+    @Step("Проверка страницы BaggageAndSeats на переход с предыдущей страницы")
+    public boolean isPageOpened() {
+        return driver.findElement(By.xpath(passengerLocator)).isDisplayed();
     }
 }
