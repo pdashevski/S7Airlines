@@ -20,10 +20,9 @@ public class TripSearchPage extends BasePage {
 
     public static final String originRoute = "search-item departure";
     public static final String destinationRoute = "search-item return";
-    public static final String feedbackLocator = "//div[@id='_hj_feedback_container']//button";
-    protected WebDriverWait wait;
     public static final String AIRPOR_FIELD = "//div[contains(@class,'%s')]//div/input";
     public static final String CALENDAR_DATE = "//div[@id='calendar-root']/button[contains(@class,'filled_ptf')]";
+    protected WebDriverWait wait;
 
     public TripSearchPage(WebDriver driver) {
         super(driver);
@@ -40,31 +39,48 @@ public class TripSearchPage extends BasePage {
         new RadioButton(driver, tripType).select();
     }
 
-    //TODO удалить метод
-    public void isFeedbackDisplayed() {
-        try {
-            wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath(feedbackLocator))));
-        } catch (NoSuchElementException |TimeoutException exception) {
-            Assert.fail("FeedBack Element cannot be found");
-        }
+    public void writeToFromInput(String text) {
+        String locator = "//div[contains(@class,'search-item departure')]//div/input";
+        String locatorInDropDown = "//li[@id='react-autowhatever-1--item-0']";
+        driver.findElement(By.xpath(locator)).click();
+        //isElementPresent(By.xpath("//body/div[2]/div[1]/div[3]/main[1]/div[1]/form[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]"));
+        driver.findElement(By.xpath(locator)).sendKeys(text);
+        isElementPresent(By.xpath(locatorInDropDown));
+        driver.findElement(By.xpath(locatorInDropDown)).click();
     }
 
+    public void writeToToInput(String text) {
+        String locator = "//div[contains(@class,'search-item return')]//div/input";
+        String locatorInDropDown = "//li[@id='react-autowhatever-1--item-0']";
+        driver.findElement(By.xpath(locator)).click();
+        //isElementPresent(By.xpath("//body/div[2]/div[1]/div[3]/main[1]/div[1]/form[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[2]"));
+        driver.findElement(By.xpath(locator)).sendKeys(text);
+        isElementPresent(By.xpath(locatorInDropDown));
+        driver.findElement(By.xpath(locatorInDropDown)).click();
+    }
+        //TODO
+    /*@Step("Заполняем поле 'откуда'")
     public void airportFrom(String origin) {
-        new Input(driver, originRoute).selectFromDropDownAirport(origin);
+        //new Input(driver, originRoute).selectFromDropDownAirport(origin);
+        String locator = "//div[contains(@class,'search-item departure')]//div/input";
     }
 
+    @Step("Заполняем поле 'куда'")
     public void airportTo(String destination) {
         new Input(driver, destinationRoute).selectFromDropDownAirport(destination);
-    }
+    }*/
 
+    @Step("Кликаем по календарю")
     public void calendarClickButton(String calendarButtonName) {
         new Button(driver, calendarButtonName).clickCalendarButton();
     }
 
+    @Step("Заполняем поле календаря данными и выбраем искомое значение")
     public void calendarSelectMonthAndDay(String month, String day) {
         new Calendar(driver, month, day).selectMonthAndDayInCalendar();
     }
 
+    @Step("Отправка формы. Переход на страницу выбора конкретного рейса")
     public void searchSubmit() {
         new Button(driver).clickSubmitButton();
     }

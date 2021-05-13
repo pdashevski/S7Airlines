@@ -1,13 +1,43 @@
 package tests;
 
-import models.Contacts;
-import models.AdultPassenger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import tests.base.BaseTest;
-import tests.base.RetryAnalyzer;
 
 public class TripSearchTest extends BaseTest {
+
+    @Test(description = "Поиск путешествия. Проверка аэропортов")
+    public void tripSearchCheckingOriginAndDestination() {
+        tripSearchPage.open();
+        tripSearchPage.tripTypeRadioButtonSelect(WAY);
+        tripSearchPage.writeToFromInput(AIRPORT_FROM);
+        tripSearchPage.writeToToInput(AIRPORT_TO);
+        Assert.assertEquals(tripSearchPage.getAirportFromValue(), "Москва, Домодедово, Россия", "Аэропорт вылета не был найден");
+        Assert.assertEquals(tripSearchPage.getAirportToValue(), "Новосибирск, Россия", "Аэропорт прибытия не был найден");
+    }
+
+    @Test(description = "Поиск путешествия. Провекра даты вылета")
+    public void tripSearchCheckingCalendarData() {
+        tripSearchPage.open();
+        tripSearchPage.tripTypeRadioButtonSelect(WAY);
+        tripSearchPage.writeToFromInput(AIRPORT_FROM);
+        tripSearchPage.writeToToInput(AIRPORT_TO);
+        tripSearchPage.calendarClickButton(CALENDAR_FROM);
+        tripSearchPage.calendarSelectMonthAndDay(MONTH, DAY_NUMBER);
+        Assert.assertEquals(tripSearchPage.getCalendarDate(), "26.05.2021", "Дата вылета не совпадает");
+    }
+
+    @Test(description = "Поиск путешествия. Переход на страницу выбора рейса")
+    public void tripSearchCheckFlightPageRedirectionWithUserData() {
+        tripSearchPage.open();
+        tripSearchPage.tripTypeRadioButtonSelect(WAY);
+        tripSearchPage.writeToFromInput(AIRPORT_FROM);
+        tripSearchPage.writeToToInput(AIRPORT_TO);
+        tripSearchPage.calendarClickButton(CALENDAR_FROM);
+        tripSearchPage.calendarSelectMonthAndDay(MONTH, DAY_NUMBER);
+        tripSearchPage.searchSubmit();
+        Assert.assertTrue(flightSearchPage.isPageOpened(), "Не удалось открыть страницу выбора рейса");
+    }
 
     /*@Test(retryAnalyzer = RetryAnalyzer.class, description = "Тест для проверки работоспособности фреймворка")
     public void openPage() throws InterruptedException {
@@ -40,37 +70,4 @@ public class TripSearchTest extends BaseTest {
         paymentPage.submitPassenger();
         System.out.println(confirmPage.getPNR());
     }*/
-
-    @Test(description = "Поиск путешествия. Проверка аэропортов")
-    public void tripSearchCheckingOriginAndDestination() {
-        tripSearchPage.open();
-        tripSearchPage.tripTypeRadioButtonSelect(WAY);
-        tripSearchPage.airportFrom(AIRPORT_FROM);
-        tripSearchPage.airportTo(AIRPORT_TO);
-        Assert.assertEquals(tripSearchPage.getAirportFromValue(), "Москва, Домодедово, Россия", "Аэропорт вылета не был найден");
-        Assert.assertEquals(tripSearchPage.getAirportToValue(), "Новосибирск, Россия", "Аэропорт прибытия не был найден");
-    }
-
-    @Test(description = "Поиск путешествия. Провекра даты вылета")
-    public void tripSearchCheckingCalendarData() {
-        tripSearchPage.open();
-        tripSearchPage.tripTypeRadioButtonSelect(WAY);
-        tripSearchPage.airportFrom(AIRPORT_FROM);
-        tripSearchPage.airportTo(AIRPORT_TO);
-        tripSearchPage.calendarClickButton(CALENDAR_FROM);
-        tripSearchPage.calendarSelectMonthAndDay(MONTH, DAY_NUMBER);
-        Assert.assertEquals(tripSearchPage.getCalendarDate(), "26.05.2021", "Дата вылета не совпадает");
-    }
-
-    @Test(description = "Поиск путешествия. Переход на страницу выбора рейса")
-    public void tripSearchCheckFlightPageRedirectionWithUserData() {
-        tripSearchPage.open();
-        tripSearchPage.tripTypeRadioButtonSelect(WAY);
-        tripSearchPage.airportFrom(AIRPORT_FROM);
-        tripSearchPage.airportTo(AIRPORT_TO);
-        tripSearchPage.calendarClickButton(CALENDAR_FROM);
-        tripSearchPage.calendarSelectMonthAndDay(MONTH, DAY_NUMBER);
-        tripSearchPage.searchSubmit();
-        Assert.assertTrue(flightSearchPage.isPageOpened(), "Не удалось открыть страницу выбора рейса");
-    }
 }

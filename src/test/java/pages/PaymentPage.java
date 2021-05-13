@@ -6,6 +6,7 @@ import models.AdultPassenger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import pages.base.BasePage;
 
@@ -23,6 +24,7 @@ public class PaymentPage extends BasePage {
     public static final String female = "//div[@data-qa-error='errorGender_pax']";
     public static final String confirmCheckbox = "//input[@id='terms-check']";
     String passengerLocator = "//div[@id='persons-title']/h2";
+    String loc1wait = "//form[@class='pax-list js-pax-list fadeout_enable']";
 
     public PaymentPage(WebDriver driver) {
         super(driver);
@@ -46,6 +48,15 @@ public class PaymentPage extends BasePage {
             driver.findElement(By.xpath(documentNumberLocator)).click();
             driver.findElement(By.xpath(documentNumberLocator)).sendKeys(adultPassenger.getDocumentNumber());
         }
+
+    }
+
+    public void fadeOutWait() {
+        try {
+            wait.until(ExpectedConditions.invisibilityOf((driver.findElement(By.xpath(loc1wait)))));
+        } catch (Exception e) {
+            Assert.fail("Не получилось ):");
+        }
     }
 
     @Step("Получаем и прокидываем введенное firstName пассажира")
@@ -68,6 +79,7 @@ public class PaymentPage extends BasePage {
         return driver.findElement(By.xpath(documentNumberLocator)).getAttribute("value");
     }
 
+    @Step("Проверяем корректность заполнения поля имени пассажира")
     public void checkFirstNameIsNotEmpty(AdultPassenger adultPassenger) {
         boolean isNotEmpty = false;
         try {
@@ -84,6 +96,7 @@ public class PaymentPage extends BasePage {
         }
     }
 
+    @Step("Проверяем корректность заполнения поля фамилии пассажира")
     public void checkLastNameIsNotEmpty(AdultPassenger adultPassenger) {
         boolean isNotEmpty = false;
         try {
@@ -100,6 +113,7 @@ public class PaymentPage extends BasePage {
         }
     }
 
+    @Step("Проверяем корректность заполнения поля даты рождения")
     public void checkBirthdayIsNotEmpty(AdultPassenger adultPassenger) {
         boolean isNotEmpty = false;
         try {
@@ -133,7 +147,12 @@ public class PaymentPage extends BasePage {
         }
     }
 
-    @Step("Создание онтактных данных пассажира")
+    public void formSubmitPassengerData() {
+        driver.findElement(By.xpath(email)).click();
+        fadeOutWait(); //?????????????????????? //TODO
+    }
+
+    @Step("Создание контактных данных пассажира")
     public void createPassengerContacts(Contacts contacts) {
         driver.findElement(By.xpath(email)).sendKeys(contacts.getEmail());
         driver.findElement(By.xpath(phone)).sendKeys(contacts.getTelephoneNumber());
@@ -149,7 +168,9 @@ public class PaymentPage extends BasePage {
         return driver.findElement(By.xpath(phone)).getAttribute("value");
     }
 
+    @Step("Отложенная оплата бронирования")
     public void onHoldPayment() {
+        isElementPresent(By.xpath(payLaterTab)); //если падает на этом моменте - можно смело удалить
         driver.findElement(By.xpath(payLaterTab)).click();
     }
 
@@ -162,6 +183,7 @@ public class PaymentPage extends BasePage {
         }
     }
 
+    @Step("Проверяем существование и выбор пола пассажира (radioButton)")
     public boolean sexRadioButtonPresent() {
         try {
             if (driver.findElement(By.xpath(female)).isDisplayed()) {
@@ -173,18 +195,20 @@ public class PaymentPage extends BasePage {
         return false;
     }
 
+    @Step("Подтверждение оплаты и данных пассажира. Проверка на существование и кликабельность кнопки submit")
     public void submitPassenger() {
-        try {
+        //TODO убрать слип
+        /*try {
             Thread.sleep(7000);
         } catch (InterruptedException exception) {
             exception.printStackTrace();
-        }
+        }*/
         isElementPresent(By.xpath(submitButton));
         isElementClickable(By.xpath(submitButton));
         driver.findElement(By.xpath(submitButton)).click();
-        //driver.findElement(By.xpath(submitButton)).click();
     }
 
+    @Step("Проверяем отображение чекбокса в корзине на странице оплаты и активируем его")
     public void confirmCheckboxSelect() {
         driver.findElement(By.xpath(confirmCheckbox)).click();
     }

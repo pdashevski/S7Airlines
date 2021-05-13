@@ -3,7 +3,6 @@ package tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import tests.base.BaseTest;
-import tests.base.RetryAnalyzer;
 
 public class FlightSearchTest extends BaseTest {
 
@@ -11,8 +10,8 @@ public class FlightSearchTest extends BaseTest {
     public void flighSearchCheckDepaAndArriveTimeForFare() {
         tripSearchPage.open();
         tripSearchPage.tripTypeRadioButtonSelect(WAY);
-        tripSearchPage.airportFrom(AIRPORT_FROM);
-        tripSearchPage.airportTo(AIRPORT_TO);
+        tripSearchPage.writeToFromInput(AIRPORT_FROM);
+        tripSearchPage.writeToToInput(AIRPORT_TO);
         tripSearchPage.calendarClickButton(CALENDAR_FROM);
         tripSearchPage.calendarSelectMonthAndDay(MONTH, DAY_NUMBER);
         tripSearchPage.searchSubmit();
@@ -34,8 +33,8 @@ public class FlightSearchTest extends BaseTest {
     public void flighSearchCheckBagAndSeatsPageRedirectionWithUserData() {
         tripSearchPage.open();
         tripSearchPage.tripTypeRadioButtonSelect(WAY);
-        tripSearchPage.airportFrom(AIRPORT_FROM);
-        tripSearchPage.airportTo(AIRPORT_TO);
+        tripSearchPage.writeToFromInput(AIRPORT_FROM);
+        tripSearchPage.writeToToInput(AIRPORT_TO);
         tripSearchPage.calendarClickButton(CALENDAR_FROM);
         tripSearchPage.calendarSelectMonthAndDay(MONTH, DAY_NUMBER);
         tripSearchPage.searchSubmit();

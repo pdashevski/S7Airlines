@@ -16,7 +16,7 @@ public abstract class BasePage {
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
-        wait = new WebDriverWait(driver, 25);
+        wait = new WebDriverWait(driver, 15);
     }
 
     @Step("Проверяем, существует ли элемент на странице")

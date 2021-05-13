@@ -17,6 +17,7 @@ public class BaggageAndSeatsPage extends BasePage {
         super(driver);
     }
 
+    @Step("Отправляем форму и переходим дальше по флоу")
     public void autoAndHotelsSubmit() {
         isElementPresent(By.xpath(submitButton));
         driver.findElement(By.xpath(submitButton)).click();

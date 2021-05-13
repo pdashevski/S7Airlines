@@ -28,6 +28,7 @@ public class ConfirmPage extends BasePage {
         //isElementPresent(By.xpath(arrowDown));
     }
 
+    @Step("Получаем уникальный идентификатор брони")
     public String getPNR() {
         expandPurchaseProductsBlock();
         return driver.findElement(By.xpath(locatorPNR)).getText();

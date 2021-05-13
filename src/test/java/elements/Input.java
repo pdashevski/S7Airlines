@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+@Deprecated
 public class Input extends BaseElement {
 
     String name;
@@ -32,11 +33,12 @@ public class Input extends BaseElement {
             e.printStackTrace();
         }
         element.sendKeys(text);
-        try {
+        /*try {
             Thread.sleep(5000);
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
+        isElementPresent(By.xpath("//body/div[2]/div[1]/div[3]/main[1]/div[1]/form[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]"));
     }
 
     public void selectFromDropDownAirport(String text) {
