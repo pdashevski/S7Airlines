@@ -10,8 +10,6 @@ public class ConfirmPage extends BasePage {
     String purchasedProductsBeforeCLick = "//div[@class='purchased-products js_purchased_products_content']";
     String purchasedProductsAfterCLick = "//div[@class='purchased-products js_purchased_products_content active']";
     String locatorPNR = "//div[@class='flights-pnr']/strong";
-    String arrowDown = "//div[@class='purchased-products-toggle js_purchased_products_toggle']" +
-            "//div[@class='purchased-products-arrow']";
 
     public ConfirmPage(WebDriver driver) {
         super(driver);
@@ -25,7 +23,6 @@ public class ConfirmPage extends BasePage {
             System.out.println("Error at confirmPageWaiting method!!!!");
         }
         driver.findElement(By.xpath(purchasedProductsAfterCLick)).click();
-        //isElementPresent(By.xpath(arrowDown));
     }
 
     @Step("Получаем уникальный идентификатор брони")

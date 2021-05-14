@@ -130,26 +130,9 @@ public class PaymentPage extends BasePage {
         }
     }
 
-    public void checkDocumentNumberIsNotEmpty(AdultPassenger adultPassenger) {
-        boolean isNotEmpty = false;
-        try {
-            isElementPresent(By.xpath(documentNumberLocator));
-            while (!isNotEmpty) {
-                driver.findElement(By.xpath(documentNumberLocator)).clear();
-                driver.findElement(By.xpath(documentNumberLocator)).sendKeys(adultPassenger.getDocumentNumber());
-                Thread.sleep(8000);
-                if (driver.findElement(By.xpath(documentNumberLocator)).getAttribute("value").equals(adultPassenger.getDocumentNumber())) {
-                    isNotEmpty = true;
-                }
-            }
-        } catch (Exception e) {
-            Assert.fail("DocumentNumber is not found...");
-        }
-    }
-
     public void formSubmitPassengerData() {
         driver.findElement(By.xpath(email)).click();
-        fadeOutWait(); //?????????????????????? //TODO
+        fadeOutWait();
     }
 
     @Step("Создание контактных данных пассажира")
@@ -197,12 +180,6 @@ public class PaymentPage extends BasePage {
 
     @Step("Подтверждение оплаты и данных пассажира. Проверка на существование и кликабельность кнопки submit")
     public void submitPassenger() {
-        //TODO убрать слип
-        /*try {
-            Thread.sleep(7000);
-        } catch (InterruptedException exception) {
-            exception.printStackTrace();
-        }*/
         isElementPresent(By.xpath(submitButton));
         isElementClickable(By.xpath(submitButton));
         driver.findElement(By.xpath(submitButton)).click();

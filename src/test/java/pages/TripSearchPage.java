@@ -2,17 +2,12 @@ package pages;
 
 import elements.Button;
 import elements.Calendar;
-import elements.Input;
 import elements.RadioButton;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import pages.base.BasePage;
 import utils.PropertyReader;
 
@@ -58,17 +53,6 @@ public class TripSearchPage extends BasePage {
         isElementPresent(By.xpath(locatorInDropDown));
         driver.findElement(By.xpath(locatorInDropDown)).click();
     }
-        //TODO
-    /*@Step("Заполняем поле 'откуда'")
-    public void airportFrom(String origin) {
-        //new Input(driver, originRoute).selectFromDropDownAirport(origin);
-        String locator = "//div[contains(@class,'search-item departure')]//div/input";
-    }
-
-    @Step("Заполняем поле 'куда'")
-    public void airportTo(String destination) {
-        new Input(driver, destinationRoute).selectFromDropDownAirport(destination);
-    }*/
 
     @Step("Кликаем по календарю")
     public void calendarClickButton(String calendarButtonName) {
