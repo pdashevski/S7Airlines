@@ -24,7 +24,7 @@ public abstract class BasePage {
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         } catch (NoSuchElementException exception) {
-            Assert.fail("Element" + locator + " cannot be found");
+            Assert.fail("Element " + locator + " cannot be found");
         }
     }
 
@@ -33,7 +33,7 @@ public abstract class BasePage {
         try {
             wait.until(ExpectedConditions.elementToBeClickable(locator));
         } catch (NoSuchElementException exception) {
-            Assert.fail("Element" + locator + " cannot be found");
+            Assert.fail("Element " + locator + " cannot be found");
         }
     }
 }

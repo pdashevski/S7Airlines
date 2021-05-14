@@ -8,7 +8,7 @@ import pages.base.BasePage;
 
 public class BaggageAndSeatsPage extends BasePage {
 
-    public static final String submitButton = "//span[contains(text(),'Далее')]/ancestor::button";
+    public static final String submitButton = "//span[contains(text(),'Далее')]/ancestor::button"; //на qa под впн "далее"
     public static final String pageMainLocator = "//h2[contains(text(),'Выберите услуги для комфортной поездки')]";
     public static final String meal = "meal_postSellBlock";
     public static final String seats = "seat_postSellBlock";
