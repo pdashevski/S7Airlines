@@ -27,6 +27,9 @@
                         -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/1.9.1/aspectjweaver-1.9.1.jar
                         -Xmx256m
                     </argLine>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>testNG.xml</suiteXmlFile>
+                    </suiteXmlFiles>
                 </configuration>
                 <dependencies>
                     <dependency>
