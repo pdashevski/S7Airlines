@@ -10,8 +10,8 @@ public class AutoAndHotelsTest extends BaseTest {
     public void autoAndHotelsPageCheckRedirectionToPaymentWithUserData() {
         tripSearchPage.open();
         tripSearchPage.tripTypeRadioButtonSelect(WAY);
-        tripSearchPage.airportFrom(AIRPORT_FROM);
-        tripSearchPage.airportTo(AIRPORT_TO);
+        tripSearchPage.writeToFromInput(AIRPORT_FROM);
+        tripSearchPage.writeToToInput(AIRPORT_TO);
         tripSearchPage.calendarClickButton(CALENDAR_FROM);
         tripSearchPage.calendarSelectMonthAndDay(MONTH, DAY_NUMBER);
         tripSearchPage.searchSubmit();

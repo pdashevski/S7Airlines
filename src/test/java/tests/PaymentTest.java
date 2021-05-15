@@ -12,8 +12,8 @@ public class PaymentTest extends BaseTest {
     public void paymentPageSexRadioCheckSelection() {
         tripSearchPage.open();
         tripSearchPage.tripTypeRadioButtonSelect(WAY);
-        tripSearchPage.airportFrom(AIRPORT_FROM);
-        tripSearchPage.airportTo(AIRPORT_TO);
+        tripSearchPage.writeToFromInput(AIRPORT_FROM);
+        tripSearchPage.writeToToInput(AIRPORT_TO);
         tripSearchPage.calendarClickButton(CALENDAR_FROM);
         tripSearchPage.calendarSelectMonthAndDay(MONTH, DAY_NUMBER);
         tripSearchPage.searchSubmit();
@@ -29,8 +29,8 @@ public class PaymentTest extends BaseTest {
     public void paymentPagePassengerDataCheck() {
         tripSearchPage.open();
         tripSearchPage.tripTypeRadioButtonSelect(WAY);
-        tripSearchPage.airportFrom(AIRPORT_FROM);
-        tripSearchPage.airportTo(AIRPORT_TO);
+        tripSearchPage.writeToFromInput(AIRPORT_FROM);
+        tripSearchPage.writeToToInput(AIRPORT_TO);
         tripSearchPage.calendarClickButton(CALENDAR_FROM);
         tripSearchPage.calendarSelectMonthAndDay(MONTH, DAY_NUMBER);
         tripSearchPage.searchSubmit();
@@ -45,6 +45,7 @@ public class PaymentTest extends BaseTest {
                 "1234 567890"
         );
         paymentPage.createPassengerDetails(adultPassenger);
+        //paymentPage.formSubmitPassengerData();
         Assert.assertEquals(paymentPage.firstNamePassengerField(),
                 adultPassenger.getFirstName(), "Фамилии не идентичны");
         Assert.assertEquals(paymentPage.lastNamePassengerField(),
@@ -59,8 +60,8 @@ public class PaymentTest extends BaseTest {
     public void paymentPagePassengerContactDataCheck() {
         tripSearchPage.open();
         tripSearchPage.tripTypeRadioButtonSelect(WAY);
-        tripSearchPage.airportFrom(AIRPORT_FROM);
-        tripSearchPage.airportTo(AIRPORT_TO);
+        tripSearchPage.writeToFromInput(AIRPORT_FROM);
+        tripSearchPage.writeToToInput(AIRPORT_TO);
         tripSearchPage.calendarClickButton(CALENDAR_FROM);
         tripSearchPage.calendarSelectMonthAndDay(MONTH, DAY_NUMBER);
         tripSearchPage.searchSubmit();
@@ -72,6 +73,7 @@ public class PaymentTest extends BaseTest {
                 "3697777777",
                 "test@test.com"
         );
+        //paymentPage.formSubmitPassengerData();
         paymentPage.createPassengerContacts(contacts);
         Assert.assertEquals(paymentPage.phonePassengerField(),
                 contacts.getTelephoneNumber(),
@@ -85,8 +87,8 @@ public class PaymentTest extends BaseTest {
     public void paymentPageCheckRedirectionToTheConfirmPage() {
         tripSearchPage.open();
         tripSearchPage.tripTypeRadioButtonSelect(WAY);
-        tripSearchPage.airportFrom(AIRPORT_FROM);
-        tripSearchPage.airportTo(AIRPORT_TO);
+        tripSearchPage.writeToFromInput(AIRPORT_FROM);
+        tripSearchPage.writeToToInput(AIRPORT_TO);
         tripSearchPage.calendarClickButton(CALENDAR_FROM);
         tripSearchPage.calendarSelectMonthAndDay(MONTH, DAY_NUMBER);
         tripSearchPage.searchSubmit();
@@ -106,6 +108,7 @@ public class PaymentTest extends BaseTest {
                 "3697777777",
                 "test@test.com"
         );
+        paymentPage.formSubmitPassengerData();
         paymentPage.createPassengerContacts(contacts);
         paymentPage.onHoldPayment();
         paymentPage.confirmCheckboxSelect();

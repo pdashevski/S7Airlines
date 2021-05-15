@@ -16,7 +16,7 @@ public abstract class BasePage {
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
-        wait = new WebDriverWait(driver, 25);
+        wait = new WebDriverWait(driver, 15);
     }
 
     @Step("Проверяем, существует ли элемент на странице")
@@ -24,7 +24,7 @@ public abstract class BasePage {
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         } catch (NoSuchElementException exception) {
-            Assert.fail("Element" + locator + " cannot be found");
+            Assert.fail("Element " + locator + " cannot be found");
         }
     }
 
@@ -33,7 +33,7 @@ public abstract class BasePage {
         try {
             wait.until(ExpectedConditions.elementToBeClickable(locator));
         } catch (NoSuchElementException exception) {
-            Assert.fail("Element" + locator + " cannot be found");
+            Assert.fail("Element " + locator + " cannot be found");
         }
     }
 }
