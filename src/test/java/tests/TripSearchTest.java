@@ -13,7 +13,7 @@ public class TripSearchTest extends BaseTest {
         tripSearchPage.writeToFromInput(AIRPORT_FROM);
         tripSearchPage.writeToToInput(AIRPORT_TO);
         Assert.assertEquals(tripSearchPage.getAirportFromValue(), "Москва, Домодедово, Россия", "Аэропорт вылета не был найден");
-        Assert.assertEquals(tripSearchPage.getAirportToValue(), "Новосибирск, Россия", "Аэропорт прибытия не был найден");
+        Assert.assertEquals(tripSearchPage.getAirportToValue(), "Сочи, Россия", "Аэропорт прибытия не был найден");
     }
 
     @Test(description = "Поиск путешествия. Провекра даты вылета")
