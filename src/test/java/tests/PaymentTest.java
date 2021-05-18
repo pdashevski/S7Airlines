@@ -1,11 +1,13 @@
 package tests;
 
+import lombok.extern.log4j.Log4j2;
 import models.AdultPassenger;
 import models.Contacts;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import tests.base.BaseTest;
 
+@Log4j2
 public class PaymentTest extends BaseTest {
 
     @Test(description = "Оплата. Проверка выбранного пола пассажира")
@@ -45,7 +47,6 @@ public class PaymentTest extends BaseTest {
                 "1234 567890"
         );
         paymentPage.createPassengerDetails(adultPassenger);
-        //paymentPage.formSubmitPassengerData();
         Assert.assertEquals(paymentPage.firstNamePassengerField(),
                 adultPassenger.getFirstName(), "Фамилии не идентичны");
         Assert.assertEquals(paymentPage.lastNamePassengerField(),
@@ -73,7 +74,6 @@ public class PaymentTest extends BaseTest {
                 "3697777777",
                 "test@test.com"
         );
-        //paymentPage.formSubmitPassengerData();
         paymentPage.createPassengerContacts(contacts);
         Assert.assertEquals(paymentPage.phonePassengerField(),
                 contacts.getTelephoneNumber(),
@@ -113,6 +113,7 @@ public class PaymentTest extends BaseTest {
         paymentPage.onHoldPayment();
         paymentPage.confirmCheckboxSelect();
         paymentPage.submitPassenger();
-        System.out.println(confirmPage.getPNR());
+        Assert.assertTrue(confirmPage.isPageOpened(), "Не удалось создать бронь и перейти на confirmPage");
+        log.error("PNR созданного бронирования: " + confirmPage.getPNR());
     }
 }
