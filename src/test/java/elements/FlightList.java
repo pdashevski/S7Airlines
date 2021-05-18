@@ -11,8 +11,8 @@ public class FlightList extends BaseElement {
     String fareLocator = segmentLocator + "//div[@data-qa='tariffItem'][1]//button";
     String departureTimeBeforeSelect = "//div[@data-qa='tripItem'][1]//div[contains(@class,'segment_route__time_2BR')][1]";
     String arrivalTimeBeforeSelect = "//div[@data-qa='tripItem'][1]//div[contains(@class,'segment_route__time_2BR')][2]";
-    String departureTimeAfterSelect = "//div[@class='selected_option_3PV'][1]//div[contains(@class,'segment_route__time_2BR')][1]";
-    String arrivalTimeAfterSelect = "//div[@class='selected_option_3PV'][1]//div[contains(@class,'segment_route__time_2BR')][2]";
+    String departureTimeAfterSelect = "//div[contains(@class,'selected_option_3PV')][1]//div[contains(@class,'segment_route__time_2BR')][1]";
+    String arrivalTimeAfterSelect = "//div[contains(@class,'selected_option_3PV')][1]//div[contains(@class,'segment_route__time_2BR')][2]";
 
     public FlightList(WebDriver driver) {
         super(driver);
