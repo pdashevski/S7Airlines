@@ -38,36 +38,4 @@ public class TripSearchTest extends BaseTest {
         tripSearchPage.searchSubmit();
         Assert.assertTrue(flightSearchPage.isPageOpened(), "Не удалось открыть страницу выбора рейса");
     }
-
-    /*@Test(retryAnalyzer = RetryAnalyzer.class, description = "Тест для проверки работоспособности фреймворка")
-    public void openPage() throws InterruptedException {
-        tripSearchPage.open();
-        tripSearchPage.tripTypeRadioButtonSelect("В одну сторону");
-        tripSearchPage.airportFrom("DME");
-        tripSearchPage.airportTo("OVB");
-        tripSearchPage.calendarClickButton("Туда");
-        tripSearchPage.calendarSelectMonthAndDay("май", "25");
-        tripSearchPage.searchSubmit();
-        flightSearchPage.selectFare();
-        flightSearchPage.flightSubmit();
-        baggageAndSeatsPage.autoAndHotelsSubmit();
-        autoAndHotelsPage.baggageAndSeatsSubmit();
-        AdultPassenger adultPassenger = new AdultPassenger(
-                "Petr",
-                "Petrikov",
-                "01.01.1990",
-                "1234567890"
-        );
-        Contacts contacts = new Contacts(
-                "36977777777",
-                "test@test.com"
-        );
-        paymentPage.sexSelect();
-        paymentPage.createPassengerDetails(adultPassenger);
-        paymentPage.createPassengerContacts(contacts);
-        paymentPage.onHoldPayment();
-        paymentPage.confirmCheckboxSelect();
-        paymentPage.submitPassenger();
-        System.out.println(confirmPage.getPNR());
-    }*/
 }
